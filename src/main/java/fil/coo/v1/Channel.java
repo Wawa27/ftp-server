@@ -1,8 +1,8 @@
-package v1;
+package fil.coo.v1;
 
-import abstracts.CommandHandler;
-import commands.*;
-import exceptions.CommandNotImplementedException;
+import fil.coo.abstracts.CommandHandler;
+import fil.coo.commands.*;
+import fil.coo.exceptions.FtpException;
 
 import java.io.*;
 import java.net.Socket;
@@ -41,6 +41,8 @@ public class Channel extends Thread {
      */
     private void setupCommandHandlers() {
         this.commandHandlers = new CommandHandler[]{
+                new PasswordCommandHandler(this),
+                new StoreCommandHandler(this),
                 new ListDirectoryCommandHandler(this),
                 new UserCommandHandler(this),
                 new PassiveCommandHandler(this),
@@ -67,9 +69,9 @@ public class Channel extends Thread {
                     this.commandHandlers[0].process(command);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
-            } catch (CommandNotImplementedException e) {
-                this.commandWriter.println("502 Command not implemented.");
+                this.commandWriter.println("500 Unknown error");
+            } catch (FtpException e) {
+                this.commandWriter.println(e.getMessage());
             }
         }
     }
@@ -100,6 +102,10 @@ public class Channel extends Thread {
 
     public void setCurrentType(char currentType) {
         this.currentType = currentType;
+    }
+
+    public char getCurrentType() {
+        return this.currentType;
     }
 
     public void setUsername(String username) {

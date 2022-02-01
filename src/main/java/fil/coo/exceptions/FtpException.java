@@ -1,4 +1,4 @@
-package exceptions;
+package fil.coo.exceptions;
 
 public class FtpException extends Exception {
 

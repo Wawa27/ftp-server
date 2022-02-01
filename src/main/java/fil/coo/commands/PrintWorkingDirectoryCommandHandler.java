@@ -1,7 +1,7 @@
-package commands;
+package fil.coo.commands;
 
-import abstracts.CommandHandler;
-import v1.Channel;
+import fil.coo.abstracts.CommandHandler;
+import fil.coo.v1.Channel;
 
 import java.io.IOException;
 

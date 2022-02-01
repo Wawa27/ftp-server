@@ -1,4 +1,4 @@
-package v1;
+package fil.coo.v1;
 
 import java.io.IOException;
 import java.net.ServerSocket;

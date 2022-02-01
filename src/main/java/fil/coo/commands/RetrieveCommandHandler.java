@@ -1,8 +1,8 @@
-package commands;
+package fil.coo.commands;
 
-import abstracts.CommandHandler;
-import exceptions.CommandNotImplementedException;
-import v1.Channel;
+import fil.coo.abstracts.CommandHandler;
+import fil.coo.exceptions.CommandNotImplementedException;
+import fil.coo.v1.Channel;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -18,7 +18,9 @@ public class RetrieveCommandHandler extends CommandHandler {
     @Override
     protected void handle(String command) throws IOException, CommandNotImplementedException {
         File file = new File(command.split(" ")[1]);
-        FileInputStream fileInputStream = new FileInputStream(file);
+        FileInputStream fileInputStream = new FileInputStream(
+                channel.getCurrentDirectory().getAbsolutePath() + "/" + file
+        );
 
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(this.channel.getDataSocket().getOutputStream());
 

@@ -1,4 +1,4 @@
-package exceptions;
+package fil.coo.exceptions;
 
 public class CommandNotImplementedException extends FtpException {
 

@@ -1,7 +1,8 @@
-package abstracts;
+package fil.coo.abstracts;
 
-import exceptions.CommandNotImplementedException;
-import v1.Channel;
+import fil.coo.exceptions.CommandNotImplementedException;
+import fil.coo.exceptions.FtpException;
+import fil.coo.v1.Channel;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -24,7 +25,7 @@ public abstract class CommandHandler {
         }
     }
 
-    public void process(String command) throws CommandNotImplementedException, IOException {
+    public void process(String command) throws FtpException, IOException {
         String commandPrefix = command.split(" ")[0];
         if (Objects.equals(commandPrefix, this.commandPrefix)) {
             this.handle(command);
@@ -36,5 +37,5 @@ public abstract class CommandHandler {
         }
     }
 
-    protected abstract void handle(String command) throws IOException, CommandNotImplementedException;
+    protected abstract void handle(String command) throws FtpException, IOException;
 }

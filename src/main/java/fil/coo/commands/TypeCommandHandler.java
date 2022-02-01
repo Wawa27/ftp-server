@@ -1,8 +1,8 @@
-package commands;
+package fil.coo.commands;
 
-import abstracts.CommandHandler;
-import exceptions.CommandNotImplementedException;
-import v1.Channel;
+import fil.coo.abstracts.CommandHandler;
+import fil.coo.exceptions.CommandNotImplementedException;
+import fil.coo.v1.Channel;
 
 import java.io.IOException;
 
