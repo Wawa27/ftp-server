@@ -1,10 +1,8 @@
 package commands;
 
 import abstracts.CommandHandler;
-import exceptions.CommandNotImplementedException;
 import v1.Channel;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,7 +15,7 @@ public class SizeCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected void handle(String command) throws IOException, CommandNotImplementedException {
+    protected void handle(String command) throws IOException {
         Path path = Paths.get(command.split(" ")[1]);
         this.channel.getCommandWriter().println("213 " + Files.size(path));
     }

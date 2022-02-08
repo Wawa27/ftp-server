@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * This command handler makes the server enter a passive server.
+ * It chooses a random not-used port and the specified host and send them to the client.
+ */
 public class PassiveCommandHandler extends CommandHandler {
 
     public PassiveCommandHandler(Channel channel) {

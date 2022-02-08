@@ -4,8 +4,10 @@ import abstracts.CommandHandler;
 import v1.Channel;
 
 import java.io.*;
-import java.util.Objects;
 
+/**
+ * Returns information of a file or directory if specified, else information of the current working directory is returned.
+ */
 public class ListDirectoryCommandHandler extends CommandHandler {
 
     public ListDirectoryCommandHandler(Channel channel) {

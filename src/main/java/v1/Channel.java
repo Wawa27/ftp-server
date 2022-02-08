@@ -7,6 +7,9 @@ import exceptions.CommandNotImplementedException;
 import java.io.*;
 import java.net.Socket;
 
+/**
+ * A channel is a threaded class that is fully responsible for handling all user's request.
+ */
 public class Channel extends Thread {
     private CommandHandler[] commandHandlers;
     private String username;
@@ -57,6 +60,9 @@ public class Channel extends Thread {
         }
     }
 
+    /**
+     * This method wait for users requests and dispatch them to the chain of handlers when received.
+     */
     @Override
     public void run() {
         while (true) {
@@ -78,7 +84,7 @@ public class Channel extends Thread {
         return dataSocket;
     }
 
-    public void setDataSocket(Socket dataSocket) throws IOException {
+    public void setDataSocket(Socket dataSocket) {
         this.dataSocket = dataSocket;
     }
 

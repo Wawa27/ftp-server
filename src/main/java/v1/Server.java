@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * A ftp server, clients are handled asynchronously by their channel.
+ */
 public class Server {
     private ServerSocket serverSocket;
     private String dataFolderPath;
@@ -14,6 +17,10 @@ public class Server {
         this.port = port;
     }
 
+    /**
+     * Start listening for clients
+     * @throws IOException A socket exception
+     */
     public void listen() throws IOException {
         this.serverSocket = new ServerSocket(port);
 
@@ -26,8 +33,14 @@ public class Server {
         }
     }
 
+    /**
+     * Start the server using the specified args
+     * @param args An array of string containing, the port (0-65535), default 0, and the folder where files are deleted/uploaded
+     *             from, default the working directory.
+     * @throws IOException A socket exception
+     */
     public static void main(String[] args) throws IOException {
-        int port = Integer.parseInt(args[0]);
+        int port = args[0] != null ? Integer.parseInt(args[0]) : 0;
         String dataFolderPath = args[1];
         Server server = new Server(port, dataFolderPath);
         server.listen();

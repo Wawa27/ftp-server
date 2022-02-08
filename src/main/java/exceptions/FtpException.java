@@ -1,5 +1,8 @@
 package exceptions;
 
+/**
+ * Ftp exceptions are caught by the channel and sent back to the client
+ */
 public class FtpException extends Exception {
 
     public FtpException() {

@@ -5,6 +5,9 @@ import v1.Channel;
 
 import java.io.IOException;
 
+/**
+ * This command handler sends the current working directory to the user.
+ */
 public class PrintWorkingDirectoryCommandHandler extends CommandHandler {
 
     public PrintWorkingDirectoryCommandHandler(Channel channel) {

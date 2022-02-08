@@ -4,8 +4,9 @@ import abstracts.CommandHandler;
 import exceptions.CommandNotImplementedException;
 import v1.Channel;
 
-import java.io.IOException;
-
+/**
+ * This command handler changes the type of data used for transfers.
+ */
 public class TypeCommandHandler extends CommandHandler {
 
     public TypeCommandHandler(Channel channel) {
@@ -13,7 +14,7 @@ public class TypeCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected void handle(String command) throws IOException, CommandNotImplementedException {
+    protected void handle(String command) throws CommandNotImplementedException {
         char type = command.split(" ")[1].charAt(0);
         switch (type) {
             case 'A', 'I' -> {

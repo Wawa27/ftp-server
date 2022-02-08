@@ -1,16 +1,13 @@
 package commands;
 
 import abstracts.CommandHandler;
-import exceptions.CommandNotImplementedException;
 import v1.Channel;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
+/**
+ * The CWD command is issued to change the client's current working directory to the path specified with the command.
+ */
 public class ChangeWorkingDirectoryCommandHandler extends CommandHandler {
 
     public ChangeWorkingDirectoryCommandHandler(Channel channel) {
@@ -18,8 +15,10 @@ public class ChangeWorkingDirectoryCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected void handle(String command) throws IOException, CommandNotImplementedException {
-        this.channel.setCurrentDirectory(new File(this.channel.getCurrentDirectory().getAbsolutePath() + "/" + command.split(" ")[1]));
+    protected void handle(String command) {
+        this.channel.setCurrentDirectory(
+                new File(this.channel.getCurrentDirectory().getAbsolutePath() + "/" + command.split(" ")[1])
+        );
         this.channel.getCommandWriter().println("200 OK");
     }
 }
