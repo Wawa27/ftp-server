@@ -25,17 +25,16 @@ public abstract class CommandHandler {
         }
     }
 
-    public void process(String command) throws FtpException, IOException {
+    public String process(String command) throws FtpException, IOException {
         String commandPrefix = command.split(" ")[0];
         if (Objects.equals(commandPrefix, this.commandPrefix)) {
-            this.handle(command);
-        } else {
-            if (this.nextHandler == null) {
-                throw new CommandNotImplementedException("Command not implemented yet...");
-            }
-            this.nextHandler.process(command);
+            return this.handle(command);
         }
+        if (this.nextHandler == null) {
+            throw new CommandNotImplementedException("Command not implemented yet...");
+        }
+        return this.nextHandler.process(command);
     }
 
-    protected abstract void handle(String command) throws FtpException, IOException;
+    protected abstract String handle(String command) throws FtpException, IOException;
 }

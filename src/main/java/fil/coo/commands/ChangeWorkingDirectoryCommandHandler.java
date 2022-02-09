@@ -14,7 +14,7 @@ public class ChangeWorkingDirectoryCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected void handle(String command) throws IOException, CommandNotImplementedException {
+    protected String handle(String command) throws IOException, CommandNotImplementedException {
         String path = command.split(" ")[1];
 
         if (path.startsWith("/")) {
@@ -27,6 +27,6 @@ public class ChangeWorkingDirectoryCommandHandler extends CommandHandler {
             );
         }
 
-        this.channel.getCommandWriter().println("200 OK");
+        return "200 OK";
     }
 }

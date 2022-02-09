@@ -11,13 +11,13 @@ public class PasswordCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected void handle(String command) throws IncorrectLoginException {
+    protected String handle(String command) throws IncorrectLoginException {
         String password = command.split(" ")[1];
 
         if (!"anonymous".equals(password) || !"anonymous".equals(channel.getUsername())) {
             throw new IncorrectLoginException();
         }
 
-        this.channel.getCommandWriter().println("230 Login successful.");
+        return "230 Login successful.";
     }
 }

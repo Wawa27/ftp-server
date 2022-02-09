@@ -12,7 +12,7 @@ public class ListDirectoryCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected void handle(String command) throws IOException {
+    protected String handle(String command) throws IOException {
         this.channel.getCommandWriter().println("150 Here comes the directory listing.");
 
         PrintWriter printWriter = new PrintWriter(this.channel.getDataSocket().getOutputStream(), true);
@@ -38,6 +38,6 @@ public class ListDirectoryCommandHandler extends CommandHandler {
             printWriter.println(stringBuilder);
         }
         printWriter.close();
-        this.channel.getCommandWriter().println("226 Directory send OK.");
+        return "226 Directory send OK.";
     }
 }

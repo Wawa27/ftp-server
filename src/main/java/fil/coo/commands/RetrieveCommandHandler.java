@@ -16,7 +16,7 @@ public class RetrieveCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected void handle(String command) throws IOException, CommandNotImplementedException {
+    protected String handle(String command) throws IOException, CommandNotImplementedException {
         File file = new File(command.split(" ")[1]);
         FileInputStream fileInputStream = new FileInputStream(
                 channel.getCurrentDirectory().getAbsolutePath() + "/" + file
@@ -28,9 +28,9 @@ public class RetrieveCommandHandler extends CommandHandler {
         this.channel.getCommandWriter().println("150 Opening BINARY mode");
 
         bufferedOutputStream.write(bytes);
-
-        this.channel.getCommandWriter().println("226 Transfer complete.");
         bufferedOutputStream.close();
+
+        return "226 Transfer complete.";
     }
 }
 

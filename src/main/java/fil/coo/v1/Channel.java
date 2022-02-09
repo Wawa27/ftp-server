@@ -5,6 +5,7 @@ import fil.coo.commands.*;
 import fil.coo.exceptions.FtpException;
 
 import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Channel extends Thread {
@@ -66,7 +67,10 @@ public class Channel extends Thread {
                 String command = this.commandReader.readLine();
                 if (command != null) {
                     System.out.println("Command from " + commandSocket.getRemoteSocketAddress() + " : " + command);
-                    this.commandHandlers[0].process(command);
+                    String response = this.commandHandlers[0].process(command);
+                    if (response != null) {
+                        this.sendMessage(response);
+                    }
                 }
             } catch (IOException e) {
                 this.commandWriter.println("500 Unknown error");
@@ -76,11 +80,15 @@ public class Channel extends Thread {
         }
     }
 
+    public void sendMessage(String message) {
+        this.commandWriter.println(message);
+    }
+
     public Socket getDataSocket() {
         return dataSocket;
     }
 
-    public void setDataSocket(Socket dataSocket) throws IOException {
+    public void setDataSocket(Socket dataSocket) {
         this.dataSocket = dataSocket;
     }
 

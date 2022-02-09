@@ -11,10 +11,10 @@ public class UserCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected void handle(String command) throws FtpException {
+    protected String handle(String command) throws FtpException {
         String username = command.split(" ")[1];
 
         this.channel.setUsername(username);
-        this.channel.getCommandWriter().println("331 Please specify the password");
+        return "331 Please specify the password";
     }
 }

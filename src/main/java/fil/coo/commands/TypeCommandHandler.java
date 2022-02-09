@@ -13,12 +13,12 @@ public class TypeCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected void handle(String command) throws IOException, CommandNotImplementedException {
+    protected String handle(String command) throws IOException, CommandNotImplementedException {
         char type = command.split(" ")[1].charAt(0);
         switch (type) {
             case 'A', 'I' -> {
                 this.channel.setCurrentType(type);
-                this.channel.getCommandWriter().println("200 OK");
+                return "200 OK";
             }
             default -> throw new CommandNotImplementedException("The type " + type + " is not supported.");
         }

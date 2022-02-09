@@ -16,8 +16,8 @@ public class SizeCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected void handle(String command) throws IOException, CommandNotImplementedException {
+    protected String handle(String command) throws IOException, CommandNotImplementedException {
         Path path = Paths.get(command.split(" ")[1]);
-        this.channel.getCommandWriter().println("213 " + Files.size(path));
+        return "213 " + Files.size(path);
     }
 }

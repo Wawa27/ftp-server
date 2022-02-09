@@ -15,7 +15,7 @@ public class StoreCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected void handle(String command) throws FtpException, IOException {
+    protected String handle(String command) throws FtpException, IOException {
         String filename = command.split(" ")[1];
 
         this.channel.getCommandWriter().println("150 Ok to send data.");
@@ -35,6 +35,6 @@ public class StoreCommandHandler extends CommandHandler {
         bufferedInputStream.close();
         fileOutputStream.close();
 
-        this.channel.getCommandWriter().println("226 Directory send OK.");
+        return "226 Directory send OK.";
     }
 }

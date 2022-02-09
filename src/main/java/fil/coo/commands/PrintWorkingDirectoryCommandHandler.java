@@ -12,7 +12,7 @@ public class PrintWorkingDirectoryCommandHandler extends CommandHandler {
     }
 
     @Override
-    protected void handle(String command) throws IOException {
-        this.channel.getCommandWriter().println("230 " + this.channel.getCurrentDirectory().getCanonicalPath());
+    protected String handle(String command) throws IOException {
+        return "230 " + this.channel.getCurrentDirectory().getCanonicalPath();
     }
 }
